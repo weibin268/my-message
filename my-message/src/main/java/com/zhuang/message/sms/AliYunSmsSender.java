@@ -15,7 +15,7 @@ import java.util.Map;
 public class AliYunSmsSender implements MessageSender {
 
     @Override
-    public boolean send(String templateId, Map<String, Object> params) {
+    public boolean send(String templateId, Map<String, Object> params, String toUsers) {
         DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "<accessKeyId>", "<accessSecret>");
         IAcsClient client = new DefaultAcsClient(profile);
 
