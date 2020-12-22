@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan
-@MapperScan("com.zhuang.autocode.mapper")
+@MapperScan("com.zhuang.message.mapper")
 public class MyMessageAutoConfiguration {
 
 }
