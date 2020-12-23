@@ -1,5 +1,6 @@
 package com.zhuang.message.sms;
 
+import com.alibaba.fastjson.JSON;
 import com.aliyuncs.CommonRequest;
 import com.aliyuncs.CommonResponse;
 import com.aliyuncs.DefaultAcsClient;
@@ -36,7 +37,7 @@ public class AliYunSmsSender implements MessageSender {
         request.putQueryParameter("SignName", myMessageProperties.getSms().getSignName());
         request.putQueryParameter("PhoneNumbers", toUsers);
         request.putQueryParameter("TemplateCode", templateId);
-
+        request.putQueryParameter("TemplateParam", JSON.toJSONString(params));
         try {
             CommonResponse response = client.getCommonResponse(request);
             System.out.println(response.getData());

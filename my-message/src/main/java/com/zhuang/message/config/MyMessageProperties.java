@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "my.fileupload")
+@ConfigurationProperties(prefix = "my.message")
 public class MyMessageProperties {
 
     private final Sms sms = new Sms();
