@@ -1,0 +1,6 @@
+my:
+  message:
+    sms:
+      accessKeyId: ""
+      accessSecret: ""
+      signName: ""
