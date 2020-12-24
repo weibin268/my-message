@@ -17,6 +17,7 @@ import com.zhuang.message.model.SendResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Component
@@ -45,10 +46,17 @@ public class AliYunSmsSender extends BaseMessageSender {
         request.putQueryParameter("TemplateParam", JSON.toJSONString(params));
         try {
             CommonResponse response = client.getCommonResponse(request);
-            System.out.println(response.getData());
-        } catch (ServerException e) {
-            e.printStackTrace();
-        } catch (ClientException e) {
+            String data = response.getData();
+            Map mapData = JSON.parseObject(data);
+            if (mapData.get("Code").toString().equals("OK")) {
+                result.setSuccess(true);
+            } else {
+                result.setSuccess(false);
+                result.setMessage(mapData.get("Message").toString());
+            }
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMessage(e.getMessage());
             e.printStackTrace();
         }
         result.setSuccess(true);
