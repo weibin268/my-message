@@ -5,7 +5,7 @@ import java.util.Arrays;
 public enum MsgStatus {
 
     TODO(0, "待处理"),
-    DONE(1, "已处理");
+    FINISH(1, "已处理");
 
     private Integer value;
     private String name;

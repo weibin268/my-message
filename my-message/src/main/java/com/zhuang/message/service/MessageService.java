@@ -1,5 +1,6 @@
 package com.zhuang.message.service;
 
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhuang.message.enums.MsgStatus;
 import com.zhuang.message.enums.MsgType;
@@ -13,7 +14,7 @@ import java.util.UUID;
 @Service
 public class MessageService extends ServiceImpl<MessageMapper, Message> {
 
-    public void add(MsgType msgType, String templateId,String toUsers, String title, String content, String url, String bizTable, String bizId) {
+    public void add(MsgType msgType, String templateId, String toUsers, String title, String content, String url, String bizTable, String bizId) {
         Message message = new Message();
         message.setId(UUID.randomUUID().toString());
         message.setType(msgType.getValue());
@@ -29,4 +30,22 @@ public class MessageService extends ServiceImpl<MessageMapper, Message> {
         save(message);
     }
 
+    public void finish(String id) {
+        update(new LambdaUpdateWrapper<Message>()
+                .eq(Message::getId, id)
+                .set(Message::getStatus, MsgStatus.FINISH.getValue())
+                .set(Message::getModifyTime, new Date())
+        );
+    }
+
+    public void finish(String bizTable, String bizId, String templateId) {
+        update(new LambdaUpdateWrapper<Message>()
+                .eq(Message::getBizTable, bizTable)
+                .eq(Message::getBizId, bizId)
+                .eq(Message::getTemplateId, templateId)
+                .set(Message::getStatus, MsgStatus.FINISH.getValue())
+                .set(Message::getModifyTime, new Date())
+        );
+    }
+    
 }
