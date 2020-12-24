@@ -2,7 +2,8 @@ package com.zhuang.message.enums;
 
 public enum MessageType {
 
-    SMS("sms");
+    SMS("sms"),
+    MSG("msg");
 
     private String value;
 
@@ -13,5 +14,5 @@ public enum MessageType {
     public String getValue() {
         return value;
     }
-    
+
 }
