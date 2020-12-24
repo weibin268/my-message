@@ -23,13 +23,13 @@ public class MsgSender extends BaseMessageSender {
     @Override
     public SendResult sendInternal(String templateId, Map<String, Object> params, String toUsers) {
         SendResult result = new SendResult();
-        String content = messageTemplateService.resolveBydId(templateId);
+        String content = messageTemplateService.resolveContent(templateId, params);
         Object oMsgType = params.get(MsgParams.MSG_TYPE);
         Object oTitle = params.get(MsgParams.MSG_TITLE);
         Object oUrl = params.get(MsgParams.MSG_URL);
         Object oBizTable = params.get(MsgParams.MSG_BIZ_TABLE);
         Object obBizId = params.get(MsgParams.MSG_BIZ_ID);
-        result.setData(content);
+        result.setContent(content);
         messageService.add(MsgType.getByValue(Integer.valueOf(objectToString(oMsgType))), templateId, toUsers, objectToString(oTitle), content, objectToString(oUrl), objectToString(oBizTable), objectToString(obBizId));
         return result;
     }

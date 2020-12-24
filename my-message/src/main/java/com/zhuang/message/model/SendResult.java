@@ -4,7 +4,7 @@ public class SendResult {
 
     private boolean success;
     private String message;
-    private String data;
+    private String content;
 
     public SendResult() {
         success = true;
@@ -26,11 +26,11 @@ public class SendResult {
         this.message = message;
     }
 
-    public String getData() {
-        return data;
+    public String getContent() {
+        return content;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setContent(String content) {
+        this.content = content;
     }
 }
