@@ -59,7 +59,6 @@ public class AliYunSmsSender extends BaseMessageSender {
             result.setMessage(e.getMessage());
             e.printStackTrace();
         }
-        result.setSuccess(true);
         return result;
     }
 

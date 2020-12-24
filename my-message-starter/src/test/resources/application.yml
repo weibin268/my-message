@@ -1,5 +1,14 @@
+spring:
+  # 数据源
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://weibin268.cn:3306/test?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    username: root
+    password: 123456
+
 my:
   message:
+    enableLog: true
     sms:
       accessKeyId: ""
       accessSecret: ""
