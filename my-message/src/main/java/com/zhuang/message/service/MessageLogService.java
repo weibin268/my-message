@@ -30,5 +30,6 @@ public class MessageLogService extends ServiceImpl<MessageLogMapper, MessageLog>
         messageLog.setStatus(success ? MessageLogStatus.SUCCESS.getValue() : MessageLogStatus.FAIL.getValue());
         messageLog.setResult(result);
         messageLog.setCreateTime(new Date());
+        save(messageLog);
     }
 }
