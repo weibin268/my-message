@@ -14,6 +14,7 @@ public class Message implements Serializable {
     private String id;
     private Integer type;
     private String templateId;
+    private String toUsers;
     private String title;
     private String content;
     private String url;
@@ -47,6 +48,14 @@ public class Message implements Serializable {
 
     public void setTemplateId(String templateId) {
         this.templateId = templateId;
+    }
+
+    public String getToUsers() {
+        return toUsers;
+    }
+
+    public void setToUsers(String toUsers) {
+        this.toUsers = toUsers;
     }
 
     public String getTitle() {

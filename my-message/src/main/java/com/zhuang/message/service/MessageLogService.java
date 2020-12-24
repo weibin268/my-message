@@ -15,10 +15,6 @@ import java.util.UUID;
 @Service
 public class MessageLogService extends ServiceImpl<MessageLogMapper, MessageLog> {
 
-    public void add(MessageType messageType, String templateId, Map params, String toUsers, boolean success, String result) {
-        add(messageType, templateId, params, toUsers, null, success, result);
-    }
-
     public void add(MessageType messageType, String templateId, Map params, String toUsers, String content, boolean success, String result) {
         MessageLog messageLog = new MessageLog();
         messageLog.setId(UUID.randomUUID().toString());

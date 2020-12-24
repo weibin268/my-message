@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public enum MsgType {
 
-    READ(0,"待阅消息"),
-    HANDLE(1,"代办消息");
+    TO_READ(0,"待阅消息"),
+    TO_DO(1,"代办消息");
 
     private Integer value;
     private String name;

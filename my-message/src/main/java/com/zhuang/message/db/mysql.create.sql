@@ -3,6 +3,7 @@ create table sys_message
     id          varchar(36)  not null,
     type        int  null comment '消息类型：0=待阅消息；1=代办消息；',
     template_id varchar(36)  null comment '消息模板Id',
+    to_users    varchar(500) null comment '接收用户',
     title       varchar(10)  null comment '消息标题',
     content     varchar(2000) null comment '消息内容',
     url         varchar (500) null comment '跳转url',
