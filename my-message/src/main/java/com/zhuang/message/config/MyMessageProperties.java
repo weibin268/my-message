@@ -48,4 +48,8 @@ public class MyMessageProperties {
     public boolean getEnableLog() {
         return enableLog;
     }
+
+    public void setEnableLog(boolean enableLog) {
+        this.enableLog = enableLog;
+    }
 }
