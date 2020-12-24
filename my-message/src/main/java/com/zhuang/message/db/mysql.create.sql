@@ -1,6 +1,7 @@
 create table sys_message_log
 (
 	id varchar(36) not null,
+	type varchar(10) null comment '消息类型',
 	template_id varchar(50) null comment '模板Id',
 	params varchar(500) null comment '参数',
 	to_users varchar (500) null comment '接收用户',
