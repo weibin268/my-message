@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "my.message")
 public class MyMessageProperties {
 
+    private boolean enableLog = false;
+
     private final Sms sms = new Sms();
 
     public static class Sms {
@@ -41,5 +43,9 @@ public class MyMessageProperties {
 
     public Sms getSms() {
         return sms;
+    }
+
+    public boolean getEnableLog() {
+        return enableLog;
     }
 }

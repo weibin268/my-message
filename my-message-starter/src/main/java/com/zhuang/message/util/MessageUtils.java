@@ -2,6 +2,7 @@ package com.zhuang.message.util;
 
 import com.zhuang.message.MessageSender;
 import com.zhuang.message.enums.MessageType;
+import com.zhuang.message.model.SendResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +23,7 @@ public class MessageUtils {
         _this = this;
     }
 
-    public static boolean send(MessageType messageType, String templateId, Map<String, Object> params, String toUsers) {
+    public static SendResult send(MessageType messageType, String templateId, Map<String, Object> params, String toUsers) {
         Optional<MessageSender> optionalMessageSender = _this.messageSenderList.stream().filter(c -> c.getMessageType() == messageType).findFirst();
         if (optionalMessageSender.isPresent()) {
             return optionalMessageSender.get().send(templateId, params, toUsers);
@@ -31,8 +32,8 @@ public class MessageUtils {
         }
     }
 
-    public static boolean sendSms(String templateId, Map<String, Object> params, String toUsers) {
+    public static SendResult sendSms(String templateId, Map<String, Object> params, String toUsers) {
         return send(MessageType.SMS, templateId, params, toUsers);
     }
-    
+
 }

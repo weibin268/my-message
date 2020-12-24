@@ -9,22 +9,27 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
+import com.zhuang.message.BaseMessageSender;
 import com.zhuang.message.MessageSender;
 import com.zhuang.message.config.MyMessageProperties;
 import com.zhuang.message.enums.MessageType;
+import com.zhuang.message.model.SendResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
 @Component
-public class AliYunSmsSender implements MessageSender {
+public class AliYunSmsSender extends BaseMessageSender {
 
     @Autowired
     private MyMessageProperties myMessageProperties;
 
     @Override
-    public boolean send(String templateId, Map<String, Object> params, String toUsers) {
+    public SendResult sendInternal(String templateId, Map<String, Object> params, String toUsers) {
+
+        SendResult result = new SendResult();
+
         DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", myMessageProperties.getSms().getAccessKeyId(), myMessageProperties.getSms().getAccessSecret());
         IAcsClient client = new DefaultAcsClient(profile);
 
@@ -46,7 +51,8 @@ public class AliYunSmsSender implements MessageSender {
         } catch (ClientException e) {
             e.printStackTrace();
         }
-        return true;
+        result.setSuccess(true);
+        return result;
     }
 
     @Override
