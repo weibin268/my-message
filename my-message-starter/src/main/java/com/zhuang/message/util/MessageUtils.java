@@ -21,7 +21,7 @@ public class MessageUtils {
     private List<MessageSender> messageSenderList;
 
     @PostConstruct
-    public void init() {
+    private void init() {
         _this = this;
     }
 
