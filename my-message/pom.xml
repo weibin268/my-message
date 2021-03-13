@@ -13,7 +13,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
     <name>my-message</name>
-    <description>自动生成流号编码</description>
+    <description>消息发送</description>
     <url>https://github.com/weibin268/my-message</url>
 
     <licenses>
