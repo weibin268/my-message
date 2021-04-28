@@ -39,7 +39,7 @@ create table sys_message_log
 create table sys_message_template
 (
     id          varchar(36)  not null,
-    name        varchar(10)  null comment '模板名字',
+    name        varchar(100)  null comment '模板名字',
     content     varchar(2000) null comment '模板内容',
     params      varchar(500) null comment '参数',
     status      int          null comment '状态：0=启用；1=禁用；',
