@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhuang.message.enums.MsgStatus;
 import com.zhuang.message.enums.MsgType;
 import com.zhuang.message.mapper.MessageMapper;
-import com.zhuang.message.model.Message;
+import com.zhuang.message.entity.Message;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
