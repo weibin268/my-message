@@ -18,7 +18,12 @@ public abstract class BaseMessageSender implements MessageSender {
     public SendResult send(String templateId, Map<String, Object> params, String toUsers) {
         SendResult result = sendInternal(templateId, params, toUsers);
         if (myMessageProperties.isEnableLog()) {
-            messageLogService.add(getMessageType(), templateId, params, toUsers.contains(",") ? "*" : toUsers, result.getContent(), result.isSuccess(), result.getMessage());
+            String tempToUser = toUsers;
+            int maxToUserLength = 1000;
+            if (tempToUser.length() > maxToUserLength) {
+                tempToUser = tempToUser.substring(0, maxToUserLength);
+            }
+            messageLogService.add(getMessageType(), templateId, params, tempToUser, result.getContent(), result.isSuccess(), result.getMessage());
         }
         return result;
     }
