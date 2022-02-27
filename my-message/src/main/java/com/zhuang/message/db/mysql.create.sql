@@ -40,9 +40,7 @@ create table sys_message_log
     result      varchar(500) null comment '发送结果',
     status      int          null comment '状态：0=失败；1=成功；',
     create_time DATETIME,
-    modify_time DATETIME,
     create_by   VARCHAR(50),
-    modify_by   VARCHAR(50),
     primary key (id)
 )
     comment '消息日志';

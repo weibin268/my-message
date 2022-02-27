@@ -22,8 +22,6 @@ public class MessageLog {
     private String result;
     private Integer status;
     private Date createTime;
-    private Date modifyTime;
     private String createBy;
-    private String modifyBy;
 
 }

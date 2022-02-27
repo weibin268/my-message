@@ -21,6 +21,10 @@ public class MessageUtilsTest extends MyMessageTestApplicationTest {
     public void sendNotice() {
         Map<String, Object> params = new HashMap<>();
         params.put(NoticeParams.NOTICE_TITLE, "test");
+        params.put(NoticeParams.NOTICE_FROM_USER, "zwb");
+        params.put(NoticeParams.NOTICE_URL, "www.baidu.com");
+        params.put(NoticeParams.NOTICE_BIZ_TABLE, "sys_user");
+        params.put(NoticeParams.NOTICE_BIZ_ID, "1");
         params.put("name", "zwb");
         params.put("age", 18);
         MessageUtils.sendNotice(NoticeType.TO_READ, "1", params, "13798106142,1111111,222222");
