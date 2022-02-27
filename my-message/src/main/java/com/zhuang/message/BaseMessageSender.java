@@ -17,7 +17,7 @@ public abstract class BaseMessageSender implements MessageSender {
     @Override
     public SendResult send(String templateId, Map<String, Object> params, String toUsers) {
         SendResult result = sendInternal(templateId, params, toUsers);
-        if (myMessageProperties.getEnableLog()) {
+        if (myMessageProperties.isEnableLog()) {
             messageLogService.add(getMessageType(), templateId, params, toUsers, result.getContent(), result.getSuccess(), result.getMessage());
         }
         return result;
