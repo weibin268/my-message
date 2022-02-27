@@ -36,9 +36,8 @@ public class NoticeSender extends BaseMessageSender {
         Object oFromUser = params.get(NoticeParams.NOTICE_FROM_USER);
         result.setContent(content);
         List<String> toUserList = Arrays.asList(toUsers.split(","));
-        toUserList.forEach(toUser -> {
-            noticeService.add(NoticeType.getByValue(Integer.valueOf(objectToString(oNoticeType))), templateId, objectToString(oFromUser), toUser, objectToString(oTitle), content, objectToString(oUrl), objectToString(oBizTable), objectToString(oBizId));
-        });
+        String noticeId = noticeService.add(NoticeType.getByValue(Integer.valueOf(objectToString(oNoticeType))), templateId, objectToString(oFromUser), toUserList, objectToString(oTitle), content, objectToString(oUrl), objectToString(oBizTable), objectToString(oBizId));
+        result.setMessage(noticeId);
         return result;
     }
 

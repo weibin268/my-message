@@ -9,8 +9,10 @@ import com.zhuang.message.enums.NoticeType;
 import com.zhuang.message.mapper.NoticeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -19,13 +21,14 @@ public class NoticeService extends ServiceImpl<NoticeMapper, Notice> {
     @Autowired
     private NoticeUserService noticeUserService;
 
-    public void add(NoticeType noticeType, String templateId, String fromUser, String toUser, String title, String content, String url, String bizTable, String bizId) {
+    public String add(NoticeType noticeType, String templateId, String fromUser, List<String> toUserList, String title, String content, String url, String bizTable, String bizId) {
+        if (CollectionUtils.isEmpty(toUserList)) return null;
         Notice notice = new Notice();
         notice.setId(UUID.randomUUID().toString());
         notice.setType(noticeType.getValue());
         notice.setTemplateId(templateId);
         notice.setFromUser(fromUser);
-        notice.setToUser(toUser);
+        notice.setToUser(toUserList.size() == 1 ? toUserList.get(0) : "*");
         notice.setTitle(title);
         notice.setContent(content);
         notice.setUrl(url);
@@ -34,12 +37,15 @@ public class NoticeService extends ServiceImpl<NoticeMapper, Notice> {
         notice.setStatus(NoticeStatus.TODO.getValue());
         notice.setCreateTime(new Date());
         save(notice);
-        NoticeUser noticeUser = new NoticeUser();
-        noticeUser.setId(UUID.randomUUID().toString());
-        noticeUser.setNoticeId(notice.getId());
-        noticeUser.setUserId(toUser);
-        noticeUser.setCreateTime(new Date());
-        noticeUserService.save(noticeUser);
+        for (String toUser : toUserList) {
+            NoticeUser noticeUser = new NoticeUser();
+            noticeUser.setId(UUID.randomUUID().toString());
+            noticeUser.setNoticeId(notice.getId());
+            noticeUser.setUserId(toUser);
+            noticeUser.setCreateTime(new Date());
+            noticeUserService.save(noticeUser);
+        }
+        return notice.getId();
     }
 
     public void finish(String id) {
