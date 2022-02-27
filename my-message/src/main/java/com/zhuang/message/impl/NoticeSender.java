@@ -5,8 +5,8 @@ import com.zhuang.message.constant.NoticeParams;
 import com.zhuang.message.enums.MessageType;
 import com.zhuang.message.enums.NoticeType;
 import com.zhuang.message.model.SendResult;
-import com.zhuang.message.service.NoticeService;
 import com.zhuang.message.service.MessageTemplateService;
+import com.zhuang.message.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -28,7 +28,7 @@ public class NoticeSender extends BaseMessageSender {
         if (StringUtils.isEmpty(toUsers)) throw new RuntimeException("toUsers is empty!");
         SendResult result = new SendResult();
         String content = messageTemplateService.resolveContent(templateId, params);
-        Object oMsgType = params.get(NoticeParams.NOTICE_TYPE);
+        Object oNoticeType = params.get(NoticeParams.NOTICE_TYPE);
         Object oTitle = params.get(NoticeParams.NOTICE_TITLE);
         Object oUrl = params.get(NoticeParams.NOTICE_URL);
         Object oBizTable = params.get(NoticeParams.NOTICE_BIZ_TABLE);
@@ -37,7 +37,7 @@ public class NoticeSender extends BaseMessageSender {
         result.setContent(content);
         List<String> toUserList = Arrays.asList(toUsers.split(","));
         toUserList.forEach(toUser -> {
-            noticeService.add(NoticeType.getByValue(Integer.valueOf(objectToString(oMsgType))), templateId, objectToString(oFromUser), toUser, objectToString(oTitle), content, objectToString(oUrl), objectToString(oBizTable), objectToString(oBizId));
+            noticeService.add(NoticeType.getByValue(Integer.valueOf(objectToString(oNoticeType))), templateId, objectToString(oFromUser), toUser, objectToString(oTitle), content, objectToString(oUrl), objectToString(oBizTable), objectToString(oBizId));
         });
         return result;
     }
