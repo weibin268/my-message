@@ -8,8 +8,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-@TableName("sys_message")
-public class Message implements Serializable {
+@TableName("sys_notice")
+public class Notice implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @TableId

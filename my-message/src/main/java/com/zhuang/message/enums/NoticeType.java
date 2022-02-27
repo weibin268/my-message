@@ -2,7 +2,7 @@ package com.zhuang.message.enums;
 
 import java.util.Arrays;
 
-public enum MsgType {
+public enum NoticeType {
 
     TO_READ(0,"待阅消息"),
     TO_DO(1,"代办消息");
@@ -10,7 +10,7 @@ public enum MsgType {
     private Integer value;
     private String name;
 
-    MsgType(Integer value, String name){
+    NoticeType(Integer value, String name){
         this.value=value;
         this.name=name;
     }
@@ -23,7 +23,7 @@ public enum MsgType {
         return this.name;
     }
 
-    public static MsgType getByValue(Integer value){
-        return  Arrays.stream(MsgType.values()).filter(c -> c.getValue().equals(value)).findFirst().orElse(null);
+    public static NoticeType getByValue(Integer value){
+        return  Arrays.stream(NoticeType.values()).filter(c -> c.getValue().equals(value)).findFirst().orElse(null);
     }
 }

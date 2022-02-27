@@ -2,7 +2,7 @@ package com.zhuang.message.enums;
 
 import java.util.Arrays;
 
-public enum MsgStatus {
+public enum NoticeStatus {
 
     TODO(0, "待处理"),
     FINISH(1, "已处理");
@@ -10,7 +10,7 @@ public enum MsgStatus {
     private Integer value;
     private String name;
 
-    MsgStatus(Integer value, String name) {
+    NoticeStatus(Integer value, String name) {
         this.value = value;
         this.name = name;
     }
@@ -23,7 +23,7 @@ public enum MsgStatus {
         return this.name;
     }
 
-    public static MsgStatus getByValue(Integer value) {
-        return Arrays.stream(MsgStatus.values()).filter(c -> c.getValue().equals(value)).findFirst().orElse(null);
+    public static NoticeStatus getByValue(Integer value) {
+        return Arrays.stream(NoticeStatus.values()).filter(c -> c.getValue().equals(value)).findFirst().orElse(null);
     }
 }

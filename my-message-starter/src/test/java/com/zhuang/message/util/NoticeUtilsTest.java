@@ -1,14 +1,14 @@
 package com.zhuang.message.util;
 
-import com.zhuang.message.MyMessageTestApplicationTest;
-import com.zhuang.message.constant.MsgParams;
-import com.zhuang.message.enums.MsgType;
+import com.zhuang.message.MyNoticeTestApplicationTest;
+import com.zhuang.message.constant.NoticeParams;
+import com.zhuang.message.enums.NoticeType;
 import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MessageUtilsTest extends MyMessageTestApplicationTest {
+public class NoticeUtilsTest extends MyNoticeTestApplicationTest {
 
     @Test
     public void sendSms() {
@@ -20,9 +20,9 @@ public class MessageUtilsTest extends MyMessageTestApplicationTest {
     @Test
     public void sendMsg() {
         Map<String, Object> params = new HashMap<>();
-        params.put(MsgParams.MSG_TITLE, "test");
+        params.put(NoticeParams.NOTICE_TITLE, "test");
         params.put("name", "zwb");
         params.put("age", 18);
-        MessageUtils.sendMsg(MsgType.TO_READ, "1", params, "13798106142");
+        MessageUtils.sendNotice(NoticeType.TO_READ, "1", params, "13798106142");
     }
 }

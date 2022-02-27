@@ -3,7 +3,7 @@ package com.zhuang.message.enums;
 public enum MessageType {
 
     SMS("sms"),
-    MSG("msg");
+    NOTICE("notice");
 
     private String value;
 

@@ -1,4 +1,4 @@
-package com.zhuang.message.sms;
+package com.zhuang.message.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.aliyuncs.CommonRequest;
