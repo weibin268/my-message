@@ -41,8 +41,8 @@ public class MessageUtils {
         if (messageSenderList.size() == 1) {
             messageSender = messageSenderList.get(0);
         } else if (messageSenderList.stream().allMatch(c -> c.getMessageType().equals(MessageType.SMS))) {
-            // templateId=*代表非模板的发送方式，Mas支持非模板的发送方式
-            if ("sms4Mas".equals(_this.myMessageProperties.getDefaultSmsType()) || "*".equals(templateId)) {
+            // Mas支持非模板的发送方式
+            if (MyMessageProperties.SMS_TYPE_MAS.equals(_this.myMessageProperties.getDefaultSmsType()) || MyMessageProperties.NONE_TEMPLATE_TAG.equals(templateId)) {
                 messageSender = messageSenderList.stream().filter(c -> c instanceof MasSmsSender).findFirst().orElse(null);
             } else {
                 messageSender = messageSenderList.stream().filter(c -> c instanceof AliYunSmsSender).findFirst().orElse(null);

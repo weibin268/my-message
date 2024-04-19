@@ -9,8 +9,12 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "my.message")
 public class MyMessageProperties {
 
+    public static final String SMS_TYPE = "sms";
+    public static final String SMS_TYPE_MAS = "sms4Mas";
+    public static final String NONE_TEMPLATE_TAG = "*";
+
     private boolean enableLog = false;
-    private String defaultSmsType = "sms";
+    private String defaultSmsType = SMS_TYPE;
     private final Sms sms = new Sms();
     private final Sms4Mas sms4Mas = new Sms4Mas();
 
