@@ -29,7 +29,7 @@ public class MasSmsSender extends BaseMessageSender {
     public SendResult sendInternal(String templateId, Map<String, Object> params, String toUsers) {
         SendResult result = new SendResult();
         try {
-            if ("*".equals(templateId)) {
+            if (MyMessageProperties.NONE_TEMPLATE_TAG.equals(templateId)) {
                 Submit4Normal submit = new Submit4Normal();
                 submit.setMobiles(toUsers);
                 submit.setContent(params.get(MsgParams.MSG_CONTENT).toString());
