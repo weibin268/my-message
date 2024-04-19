@@ -8,4 +8,5 @@ public class MsgParams {
     public static final String MSG_BIZ_TABLE = "msg_biz_table";
     public static final String MSG_BIZ_ID = "msg_biz_id";
     public static final String MSG_FROM_USER = "msg_from_user";
+    public static final String MSG_CONTENT = "msg_content";
 }
