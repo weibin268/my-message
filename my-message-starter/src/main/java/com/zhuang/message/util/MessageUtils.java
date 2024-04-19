@@ -33,18 +33,19 @@ public class MessageUtils {
     }
 
     public static SendResult send(MessageType messageType, String templateId, Map<String, Object> params, String toUsers) {
-        List<MessageSender> senderList = _this.messageSenderList.stream().filter(c -> c.getMessageType() == messageType).collect(Collectors.toList());
-        if (CollectionUtils.isEmpty(senderList)) {
+        List<MessageSender> messageSenderList = _this.messageSenderList.stream().filter(c -> c.getMessageType() == messageType).collect(Collectors.toList());
+        if (CollectionUtils.isEmpty(messageSenderList)) {
             throw new RuntimeException("can not find the message sender!");
         }
         MessageSender messageSender;
-        if (senderList.size() == 1) {
-            messageSender = senderList.get(0);
-        } else if (senderList.stream().allMatch(c -> c.getMessageType().equals(MessageType.SMS))) {
+        if (messageSenderList.size() == 1) {
+            messageSender = messageSenderList.get(0);
+        } else if (messageSenderList.stream().allMatch(c -> c.getMessageType().equals(MessageType.SMS))) {
+            // templateId=*代表非模板的发送方式，Mas支持非模板的发送方式
             if ("sms4Mas".equals(_this.myMessageProperties.getDefaultSmsType()) || "*".equals(templateId)) {
-                messageSender = senderList.stream().filter(c -> c instanceof MasSmsSender).findFirst().orElse(null);
+                messageSender = messageSenderList.stream().filter(c -> c instanceof MasSmsSender).findFirst().orElse(null);
             } else {
-                messageSender = senderList.stream().filter(c -> c instanceof AliYunSmsSender).findFirst().orElse(null);
+                messageSender = messageSenderList.stream().filter(c -> c instanceof AliYunSmsSender).findFirst().orElse(null);
             }
         } else {
             throw new RuntimeException("found more one the message sender!");
